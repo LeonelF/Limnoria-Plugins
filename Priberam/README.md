@@ -1,0 +1,1 @@
+Priberam dictionary client
