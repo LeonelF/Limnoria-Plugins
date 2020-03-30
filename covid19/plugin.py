@@ -264,7 +264,7 @@ class COVID19(callbacks.Plugin):
         else:
             fcidade = argv[0]
         output = 'Not found'
-        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/CAOP_COVID_pontos_view2603_1/FeatureServer/0/query?f=json&where=(CasosConfirmados2603%20IS%20NOT%20NULL)%20AND%20(CasosConfirmados2603%3E%3D3)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=CasosConfirmados2603%20desc&resultOffset=0&resultRecordCount=381&cacheHint=true'
+        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/CAOP_COVID3003_view/FeatureServer/0/query?f=json&where=CasosConfirmados3003%20IS%20NOT%20NULL&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=CasosConfirmados3003%20desc&resultOffset=0&resultRecordCount=390&cacheHint=true'
 
         req = urllib.request.Request(
             url, 
@@ -303,12 +303,12 @@ class COVID19(callbacks.Plugin):
                 valory = valores[dayYStr]
             else:
                 lvalores = list(valores.values())
-                lkeys = list(valores)
                 valor = lvalores[-1]
                 valory = lvalores[-2]
+            lkeys = list(valores)
             novos = int(valor) - int(valory)
-            data_dados = lkeys[-1][0:2]
-            output = "Dados DGS Casos Confirmados (" + str(resultado['Concelho_min']) + "): " + str(valor) + " (novos +" + str(novos) + ") Dados relativos a " + data_dados + "/" + '{:02d}'.format(datetime.date.today().month)
+            data_dados = lkeys[-1][0:2] + "/" + lkeys[-1][2:4]
+            output = "Dados DGS Casos Confirmados (" + str(resultado['Concelho_min']) + "): " + str(valor) + " (novos +" + str(novos) + ") Dados relativos a " + data_dados
         irc.reply(output, prefixNick=False)
     fcv19pt = wrap(fcv19pt, [additional('text')])
 Class = COVID19
