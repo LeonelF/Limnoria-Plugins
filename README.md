@@ -8,3 +8,5 @@ Plugins for supybot / Limnoria that I have created
 * Maria - Plugin that interacts with Maria API from DeadBSD.org
 * Repl - Plugin that uses the Maria API from DeadBSD.org and replaces the message with given words
 * Server - Plugin that provides minor tools for Server Administration (work in progress, for now only reply uptime and uname)
+* Bible - Plugin that fetches a random phrase from the bible and translate it to portuguese
+* Covid19 - Plugin for retrieving live data about Covid-19 infections
