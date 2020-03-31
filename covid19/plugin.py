@@ -307,8 +307,12 @@ class COVID19(callbacks.Plugin):
                 valory = lvalores[-2]
             lkeys = list(valores)
             novos = int(valor) - int(valory)
+            if (novos > 0):
+                novos = "+" + str(novos)
+            else:
+                novos = str(novos)
             data_dados = lkeys[-1][0:2] + "/" + lkeys[-1][2:4]
-            output = "Dados DGS Casos Confirmados (" + str(resultado['Concelho_min']) + "): " + str(valor) + " (novos +" + str(novos) + ") Dados relativos a " + data_dados
+            output = "Dados DGS Casos Confirmados (" + str(resultado['Concelho_min']) + "): " + str(valor) + " (novos " + novos + ") Dados relativos a " + data_dados
         irc.reply(output, prefixNick=False)
     fcv19pt = wrap(fcv19pt, [additional('text')])
 Class = COVID19
