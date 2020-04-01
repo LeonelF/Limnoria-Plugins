@@ -223,7 +223,6 @@ class COVID19(callbacks.Plugin):
         """<COVID19>
         Returns the current COVID19 Data for Portugal (Data from DGS).
         """
-        
         output = 'Not found'
         url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/COVID19Portugal_UltimoRel/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=102100&resultOffset=0&resultRecordCount=50&cacheHint=true'
         req = urllib.request.Request(
