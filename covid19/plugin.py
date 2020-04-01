@@ -171,8 +171,6 @@ class COVID19(callbacks.Plugin):
                         if (len(row[2]) > 1):
                             new = row[2].strip()
                         output = "Cases in " + row[0].strip() + ": " + row[1].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[5].strip() + " Active cases: " + row[6].strip() + " Serious/Critical: " + row[7].strip()
-            if (country.lower() == 'almada'):
-                output = 'Cases in Almada: 0 ( new 0) Total deaths: 0 People Panicking: 1 (its fALSO)'
             irc.reply(output, prefixNick=False)
     fcovid19 = wrap(fcovid19, [additional('text')])
     def fcovid19y(self, irc, msg, args, argv):
@@ -219,8 +217,6 @@ class COVID19(callbacks.Plugin):
                         if (len(row[2]) > 1):
                             new = row[2].strip()
                         output = "Cases in " + row[0].strip() + " (Yesterday): " + row[1].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[5].strip() + " Active cases: " + row[6].strip() + " Serious/Critical: " + row[7].strip()
-            if (country.lower() == 'almada'):
-                output = 'Cases in Almada (Yesterday): 0 ( new 0) Total deaths: 0 People Panicking: 1 (its fALSO)'
             irc.reply(output, prefixNick=False)
     fcovid19y = wrap(fcovid19y, [additional('text')])
     def cv19pt(self, irc, msg, args, argv):
