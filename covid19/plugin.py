@@ -39,7 +39,8 @@ except ImportError:
     _ = lambda x: x
 import urllib.parse
 from urllib.request import urlopen, HTTPError, URLError
-from datetime import datetime
+from datetime import datetime as dt
+from datetime import timedelta
 import datetime
 import re
 import requests
@@ -242,8 +243,8 @@ class COVID19(callbacks.Plugin):
             return
         values = json.loads(response.read().decode('utf-8'))
         valdat = values['features'][0]['attributes']
-        datarelatorio = datetime.fromtimestamp(int(str(valdat['datarelatorio'])[0:10]))
-        output = "Dados DGS Casos Confirmados: " + str(valdat['casosconfirmados']) + " (" + str(valdat['casosnovos']) + " novos) " + "Casos suspeitos: " + str(valdat['casossuspeitos']) + " Recuperados: " + str(valdat['recuperados']) + " Obitos: " + str(valdat['nrobitos']) + " Data do relatório: " + str(datarelatorio)
+        datarelatorio = dt.fromtimestamp(int(str(valdat['datarelatorio'])[0:10]))
+        output = "Dados DGS Casos Confirmados: " + str(valdat['casosconfirmados']) + " (" + str(valdat['casosnovos']) + " novos) | Casos suspeitos: " + str(valdat['casossuspeitos']) + " | Recuperados: " + str(valdat['recuperados']) + " | Aguardam resultado de Lab.: " + str(valdat['AguardaReslab']) + " | Obitos: " + str(valdat['nrobitos']) + " | Data do relatório: " + str(datarelatorio)
         irc.reply(output, prefixNick=False)
     cv19pt = wrap(cv19pt, [additional('text')])
     def fcv19pt(self, irc, msg, args, argv):
@@ -286,8 +287,9 @@ class COVID19(callbacks.Plugin):
             output = "Não foram encontrados resultados"
         else:
             today = datetime.date.today().day
+            yesterday = datetime.date.today() - timedelta(1)
             dayStr = '{:02d}'.format(today) + '{:02d}'.format(datetime.date.today().month)
-            dayYStr = '{:02d}'.format(today - 1) + '{:02d}'.format(datetime.date.today().month)
+            dayYStr = '{:02d}'.format(yesterday.day) + '{:02d}'.format(yesterday.month)
             valores = dict()
             for data in resultado:
                 if (data.startswith('CasosConfirmados')):
