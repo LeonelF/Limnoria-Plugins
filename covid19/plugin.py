@@ -244,7 +244,7 @@ class COVID19(callbacks.Plugin):
         values = json.loads(response.read().decode('utf-8'))
         valdat = values['features'][0]['attributes']
         datarelatorio = dt.fromtimestamp(int(str(valdat['datarelatorio'])[0:10]))
-        output = "Dados DGS Casos Confirmados: " + str(valdat['casosconfirmados']) + " (" + str(valdat['casosnovos']) + " novos) | Casos suspeitos: " + str(valdat['casossuspeitos']) + " | Recuperados: " + str(valdat['recuperados']) + " | Aguardam resultado de Lab.: " + str(valdat['AguardaReslab']) + " | Obitos: " + str(valdat['nrobitos']) + " | Data do relatório: " + str(datarelatorio)
+        output = "Dados DGS Casos Confirmados: " + str(valdat['casosconfirmados']) + " (" + str(valdat['casosnovos']) + " novos) | Internados: " + str(valdat['CasosInternados']) + " | Internados UCI: " + str(valdat['CasosInternadosUCI']) + " | Casos suspeitos: " + str(valdat['casossuspeitos']) + " | Recuperados: " + str(valdat['recuperados']) + " | Aguardam resultado de Lab.: " + str(valdat['AguardaReslab']) + " | Obitos: " + str(valdat['nrobitos']) + " | Data do relatório: " + str(datarelatorio)
         irc.reply(output, prefixNick=False)
     cv19pt = wrap(cv19pt, [additional('text')])
     def fcv19pt(self, irc, msg, args, argv):
