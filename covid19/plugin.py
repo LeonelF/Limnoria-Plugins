@@ -260,8 +260,7 @@ class COVID19(callbacks.Plugin):
         else:
             fcidade = argv[0]
         output = 'Not found'
-        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/CAOP_COVID3003_view/FeatureServer/0/query?f=json&where=CasosConfirmados3003%20IS%20NOT%20NULL&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=CasosConfirmados3003%20desc&resultOffset=0&resultRecordCount=390&cacheHint=true'
-
+        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/COVID19_Concelhos_V/FeatureServer/0/query?f=json&where=ConfirmadosAcumulado_Conc%3E0&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=ConfirmadosAcumulado_Conc%20desc&resultOffset=0&resultRecordCount=318&cacheHint=true'
         req = urllib.request.Request(
             url, 
             data=None,
