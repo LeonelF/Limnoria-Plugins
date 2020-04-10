@@ -286,35 +286,8 @@ class COVID19(callbacks.Plugin):
         if (resultado == ""):
             output = "Não foram encontrados resultados"
         else:
-<<<<<<< HEAD
             datarelatorio = datetime.fromtimestamp(int(str(valdat['Data_Conc'])[0:10]))
             output = "Dados DGS Casos Confirmados acumulados (" + str(resultado['Concelho']).lower().capitalize() + "): " + str(resultado['ConfirmadosAcumulado_Conc']) + " | Recuperados: " + str(resultado['Recuperados_Conc']) + " | Obitos: " + str(resultado['Obitos_Conc']) + " | Data do relatório: " + str(datarelatorio)
-=======
-            today = datetime.date.today().day
-            yesterday = datetime.date.today() - timedelta(1)
-            dayStr = '{:02d}'.format(today) + '{:02d}'.format(datetime.date.today().month)
-            dayYStr = '{:02d}'.format(yesterday.day) + '{:02d}'.format(yesterday.month)
-            valores = dict()
-            for data in resultado:
-                if (data.startswith('CasosConfirmados')):
-                    if (resultado[data] != None):
-                        valores[data.replace('CasosConfirmados','')] = resultado[data]
-            if (dayStr in valores):
-                valor = valores[dayStr]
-                valory = valores[dayYStr]
-            else:
-                lvalores = list(valores.values())
-                valor = lvalores[-1]
-                valory = lvalores[-2]
-            lkeys = list(valores)
-            novos = int(valor) - int(valory)
-            if (novos > 0):
-                novos = "+" + str(novos)
-            else:
-                novos = str(novos)
-            data_dados = lkeys[-1][0:2] + "/" + lkeys[-1][2:4]
-            output = "Dados DGS Casos Confirmados (" + str(resultado['Concelho_min']) + "): " + str(valor) + " (novos " + novos + ") Dados relativos a " + data_dados
->>>>>>> 9418def714bdba643f083fe28006c03067908b6c
         irc.reply(output, prefixNick=False)
     fcv19pt = wrap(fcv19pt, [additional('text')])
 Class = COVID19
