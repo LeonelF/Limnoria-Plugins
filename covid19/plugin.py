@@ -285,7 +285,7 @@ class COVID19(callbacks.Plugin):
         if (resultado == ""):
             output = "Não foram encontrados resultados"
         else:
-            datarelatorio = datetime.fromtimestamp(int(str(valdat['Data_Conc'])[0:10]))
+            datarelatorio = dt.fromtimestamp(int(str(valdat['Data_Conc'])[0:10]))
             output = "Dados DGS Casos Confirmados acumulados (" + str(resultado['Concelho']).lower().capitalize() + "): " + str(resultado['ConfirmadosAcumulado_Conc']) + " | Recuperados: " + str(resultado['Recuperados_Conc']) + " | Obitos: " + str(resultado['Obitos_Conc']) + " | Data do relatório: " + str(datarelatorio)
         irc.reply(output, prefixNick=False)
     fcv19pt = wrap(fcv19pt, [additional('text')])
