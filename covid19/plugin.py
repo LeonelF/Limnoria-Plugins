@@ -260,7 +260,7 @@ class COVID19(callbacks.Plugin):
         else:
             fcidade = argv[0]
         output = 'Not found'
-        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/COVID19_Concelhos_V/FeatureServer/0/query?f=json&where=ConfirmadosAcumulado_Conc%3E0&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=ConfirmadosAcumulado_Conc%20desc&resultOffset=0&resultRecordCount=318&cacheHint=true'
+        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/ArcGIS/rest/services/COVID19_ConcelhosDiarios/FeatureServer/0/query?where=Concelho%3D%27{0}%27&outFields=*&featureEncoding=esriDefault&f=pjson&orderByFields=Data+DESC&token='.format(fcidade.lower())
         req = urllib.request.Request(
             url, 
             data=None,
@@ -278,15 +278,24 @@ class COVID19(callbacks.Plugin):
             return
         values = json.loads(response.read().decode('utf-8'))
         valdat = values['features']
-        resultado = ""
+        i = 0
+        resultado = [0, 0]
         for concelho in valdat:
-            if (concelho['attributes']['Concelho'].lower() == fcidade.lower()):
-                resultado = concelho['attributes']
+            if (i > 1):
+                break
+            resultado[i] = concelho['attributes']
+            i += 1
+
+        novosCasos = int(resultado[0]['ConfirmadosAcumulado']) - int(resultado[1]['ConfirmadosAcumulado'])
+        if (novosCasos > 0):
+            novosCasos = "+" + str(novosCasos)
+        else:
+            novosCasos = str(novosCasos)
         if (resultado == ""):
             output = "Não foram encontrados resultados"
         else:
-            datarelatorio = dt.fromtimestamp(int(str(resultado['Data_Conc'])[0:10]))
-            output = "Dados DGS Casos Confirmados acumulados (" + str(resultado['Concelho']).lower().capitalize() + "): " + str(resultado['ConfirmadosAcumulado_Conc']) + " | Recuperados: " + str(resultado['Recuperados_Conc']) + " | Obitos: " + str(resultado['Obitos_Conc']) + " | Data do relatório: " + str(datarelatorio)
+            datarelatorio = dt.fromtimestamp(int(str(resultado[0]['Data'])[0:10]))
+            output = "Dados DGS Casos Confirmados acumulados (" + str(resultado[0]['Concelho']).lower().capitalize() + "): " + str(resultado[0]['ConfirmadosAcumulado']) + " (novos " + novosCasos + ") | Data do relatório: " + str(datarelatorio)
         irc.reply(output, prefixNick=False)
     fcv19pt = wrap(fcv19pt, [additional('text')])
 Class = COVID19
