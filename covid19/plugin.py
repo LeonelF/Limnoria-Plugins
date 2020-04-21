@@ -285,15 +285,14 @@ class COVID19(callbacks.Plugin):
                 break
             resultado[i] = concelho['attributes']
             i += 1
-
-        novosCasos = int(resultado[0]['ConfirmadosAcumulado']) - int(resultado[1]['ConfirmadosAcumulado'])
-        if (novosCasos > 0):
-            novosCasos = "+" + str(novosCasos)
-        else:
-            novosCasos = str(novosCasos)
-        if (resultado == ""):
+        if (resultado[0] == 0):
             output = "Não foram encontrados resultados"
         else:
+            novosCasos = int(resultado[0]['ConfirmadosAcumulado']) - int(resultado[1]['ConfirmadosAcumulado'])
+            if (novosCasos > 0):
+                novosCasos = "+" + str(novosCasos)
+            else:
+                novosCasos = str(novosCasos)
             datarelatorio = dt.fromtimestamp(int(str(resultado[0]['Data'])[0:10]))
             output = "Dados DGS Casos Confirmados acumulados (" + str(resultado[0]['Concelho']).lower().capitalize() + "): " + str(resultado[0]['ConfirmadosAcumulado']) + " (novos " + novosCasos + ") | Data do relatório: " + str(datarelatorio)
         irc.reply(output, prefixNick=False)
