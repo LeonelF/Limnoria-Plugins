@@ -71,9 +71,16 @@ class Server(callbacks.Plugin):
 		"""
 		result = subprocess.run(['php', '-v'], stdout=subprocess.PIPE)
 		irc.reply(_(result.stdout.decode('utf-8').rstrip()))
+	def srvpython(self, irc, msg, args, argv):
+		"""
+		Returns the server php version
+		"""
+		result = subprocess.run(['python', '-V'], stdout=subprocess.PIPE)
+		irc.reply(_(result.stdout.decode('utf-8').rstrip()))
 	srvuptime = wrap(srvuptime, ['owner', additional('text')])
 	srvuname = wrap(srvuname, ['owner', additional('text')])
 	srvphp = wrap(srvphp, ['owner', additional('text')])
+	srvpython = wrap(srvpython, ['owner', additional('text')])
 
 Class = Server
 
