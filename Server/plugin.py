@@ -75,7 +75,7 @@ class Server(callbacks.Plugin):
 		"""
 		Returns the server php version
 		"""
-		result = subprocess.run(['python', '-V'], stdout=subprocess.PIPE)
+		result = subprocess.run(['python3', '-V'], stdout=subprocess.PIPE)
 		irc.reply(_(result.stdout.decode('utf-8').rstrip()))
 	srvuptime = wrap(srvuptime, ['owner', additional('text')])
 	srvuname = wrap(srvuname, ['owner', additional('text')])
