@@ -67,7 +67,7 @@ class Weather(callbacks.Plugin):
 		city = argv
 		
 		url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=f8801321df9b3be884c3b641c1878f99'.format(city)
-		#url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text=%22{}%22)%20and%20u=%22c%22&format=json&env=store://datatables.org/alltableswithkeys'.format(city)
+		
 		try:
 			response = urlopen(url, timeout=5)
 		except (HTTPError, URLError) as error:
@@ -126,7 +126,7 @@ class Weather(callbacks.Plugin):
 		if (argv2[0] == "None"):
 			irc.error("Usage .forecast <location> [results (1-5)]")
 			return
-		city = argv
+		city = argv2[0]
 		if (len(argv2) > 1):
 			if (argv2[-1].isdigit()):
 				results = int(argv2[-1])
