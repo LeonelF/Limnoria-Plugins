@@ -161,17 +161,17 @@ class COVID19(callbacks.Plugin):
                 td = tr.find_all('td')
                 row = [i.text for i in td]   
                 if (len(row) > 0):  
-                    if (country.lower() == row[0].lower().strip()):
+                    if (country.lower() == row[1].lower().strip()):
                         deaths = "0"
                         new = "0"
                         ndeaths = "0"
+                        if (len(row[5]) > 1):
+                            deaths = row[5].strip()
+                        if (len(row[5]) > 1):
+                            ndeaths = row[5].strip()
                         if (len(row[3]) > 1):
-                            deaths = row[3].strip()
-                        if (len(row[4]) > 1):
-                            ndeaths = row[4].strip()
-                        if (len(row[2]) > 1):
-                            new = row[2].strip()
-                        output = "Cases in " + row[0].strip() + ": " + row[1].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[5].strip() + " Active cases: " + row[6].strip() + " Serious/Critical: " + row[7].strip()
+                            new = row[3].strip()
+                        output = "Cases in " + row[1].strip() + ": " + row[2].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[6].strip() + " Active cases: " + row[7].strip() + " Serious/Critical: " + row[8].strip()
             irc.reply(output, prefixNick=False)
     fcovid19 = wrap(fcovid19, [additional('text')])
     def fcovid19y(self, irc, msg, args, argv):
@@ -207,17 +207,17 @@ class COVID19(callbacks.Plugin):
                 td = tr.find_all('td')
                 row = [i.text for i in td]   
                 if (len(row) > 0):  
-                    if (country.lower() == row[0].lower().strip()):
+                    if (country.lower() == row[1].lower().strip()):
                         deaths = "0"
                         new = "0"
                         ndeaths = "0"
-                        if (len(row[3]) > 1):
-                            deaths = row[3].strip()
                         if (len(row[4]) > 1):
-                            ndeaths = row[4].strip()
-                        if (len(row[2]) > 1):
-                            new = row[2].strip()
-                        output = "Cases in " + row[0].strip() + " (Yesterday): " + row[1].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[5].strip() + " Active cases: " + row[6].strip() + " Serious/Critical: " + row[7].strip()
+                            deaths = row[4].strip()
+                        if (len(row[5]) > 1):
+                            ndeaths = row[5].strip()
+                        if (len(row[3]) > 1):
+                            new = row[3].strip()
+                        output = "Cases in " + row[1].strip() + " (Yesterday): " + row[2].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[6].strip() + " Active cases: " + row[7].strip() + " Serious/Critical: " + row[8].strip()
             irc.reply(output, prefixNick=False)
     fcovid19y = wrap(fcovid19y, [additional('text')])
     def cv19pt(self, irc, msg, args, argv):
