@@ -165,8 +165,8 @@ class COVID19(callbacks.Plugin):
                         deaths = "0"
                         new = "0"
                         ndeaths = "0"
-                        if (len(row[5]) > 1):
-                            deaths = row[5].strip()
+                        if (len(row[4]) > 1):
+                            deaths = row[4].strip()
                         if (len(row[5]) > 1):
                             ndeaths = row[5].strip()
                         if (len(row[3]) > 1):
