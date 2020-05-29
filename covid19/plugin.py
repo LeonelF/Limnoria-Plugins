@@ -260,7 +260,7 @@ class COVID19(callbacks.Plugin):
         else:
             fcidade = argv[0]
         output = 'Not found'
-        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/ArcGIS/rest/services/COVID19_ConcelhosDiarios/FeatureServer/0/query?where=Concelho%3D%27{0}%27&outFields=*&featureEncoding=esriDefault&f=pjson&orderByFields=Data+DESC&token='.format(fcidade.replace(" ","%20").lower())
+        url = 'https://services.arcgis.com/CCZiGSEQbAxxFVh3/ArcGIS/rest/services/COVID19_ConcelhosDiarios/FeatureServer/0/query?where=Concelho%3D%27{0}%27&outFields=*&featureEncoding=esriDefault&f=pjson&orderByFields=Data+DESC&token='.format(urllib.parse.quote(fcidade.lower()))
         req = urllib.request.Request(
             url, 
             data=None,
