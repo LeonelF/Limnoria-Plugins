@@ -66,7 +66,7 @@ class Weather(callbacks.Plugin):
 			return
 		city = argv
 		
-		url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=f8801321df9b3be884c3b641c1878f99'.format(city)
+		url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=f8801321df9b3be884c3b641c1878f99'.format(urllib.parse.quote(city))
 		
 		try:
 			response = urlopen(url, timeout=5)
