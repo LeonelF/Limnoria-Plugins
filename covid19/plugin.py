@@ -171,7 +171,7 @@ class COVID19(callbacks.Plugin):
                             ndeaths = row[5].strip()
                         if (len(row[3]) > 1):
                             new = row[3].strip()
-                        output = "Cases in " + row[1].strip() + ": " + row[2].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[6].strip() + " Active cases: " + row[7].strip() + " Serious/Critical: " + row[8].strip()
+                        output = "Cases in " + row[1].strip() + ": " + row[2].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[7].strip() + " Active cases: " + row[8].strip() + " Serious/Critical: " + row[9].strip()
             irc.reply(output, prefixNick=False)
     fcovid19 = wrap(fcovid19, [additional('text')])
     def fcovid19y(self, irc, msg, args, argv):
@@ -217,7 +217,7 @@ class COVID19(callbacks.Plugin):
                             ndeaths = row[5].strip()
                         if (len(row[3]) > 1):
                             new = row[3].strip()
-                        output = "Cases in " + row[1].strip() + " (Yesterday): " + row[2].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[6].strip() + " Active cases: " + row[7].strip() + " Serious/Critical: " + row[8].strip()
+                        output = "Cases in " + row[1].strip() + " (Yesterday): " + row[2].strip() + " (new " + new + ") Total deaths: " + deaths + " (new " + ndeaths + ") Recovered: " + row[7].strip() + " Active cases: " + row[8].strip() + " Serious/Critical: " + row[9].strip()
             irc.reply(output, prefixNick=False)
     fcovid19y = wrap(fcovid19y, [additional('text')])
     def cv19pt(self, irc, msg, args, argv):
