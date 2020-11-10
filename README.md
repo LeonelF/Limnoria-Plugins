@@ -10,3 +10,4 @@ Plugins for supybot / Limnoria that I have created
 * Server - Plugin that provides minor tools for Server Administration (work in progress, for now only reply uptime and uname)
 * Bible - Plugin that fetches a random phrase from the bible and translate it to portuguese
 * Covid19 - Plugin for retrieving live data about Covid-19 infections
+* LastFM - Client for Last.FM API for retrieving the Current Playing track (Forked from Pedro de Oliveira) doesn't use the bugged pyLast Lib
