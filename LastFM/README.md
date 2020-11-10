@@ -1,4 +1,4 @@
-Last.fm client (Forke from Pedro de Oliveira) does not use pyLast library
+Last.fm client (Forked from Pedro de Oliveira) does not use pyLast library
 
 Dont forget to:
 
