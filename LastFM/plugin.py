@@ -141,7 +141,6 @@ class LastFM(callbacks.Plugin):
         """
         if self.connect() is False:
             return
-
         if user:
             username = user
         else:
@@ -156,7 +155,7 @@ class LastFM(callbacks.Plugin):
         payload_current_track = {
             'api_key': key,
             'method': 'user.getRecentTracks',
-            'user': 'nitrospira',
+            'user': username,
             'limit': 1,
             'format': 'json'
         }
@@ -170,7 +169,7 @@ class LastFM(callbacks.Plugin):
             payload_track = {
             'api_key': key,
             'method': 'track.getInfo',
-            'username': 'nitrospira',
+            'username': username,
             'track': values['recenttracks']['track'][0]['name'],
             'artist': values['recenttracks']['track'][0]['artist']['#text'],
             'format': 'json'
