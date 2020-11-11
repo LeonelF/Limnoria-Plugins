@@ -186,7 +186,7 @@ class LastFM(callbacks.Plugin):
                 tags = ""
             message = "{} {} is listening to: {} - {} ({} plays) {}".format(
                 self.prepend,
-                msg.nick,
+                username,
                 track,
                 artist,
                 playcount,
@@ -195,12 +195,11 @@ class LastFM(callbacks.Plugin):
         else:
             message = "{} {} is not playing anything right now".format(
                 self.prepend,
-                msg.nick
+                username
                 )
             
         irc.reply(message, prefixNick=False)
     nowplaying = wrap(nowplaying, ['channel', optional('anything')])
-
 Class = LastFM
 
 
